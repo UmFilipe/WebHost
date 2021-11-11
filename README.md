@@ -1,9 +1,9 @@
 # WebHost
 
-Este é o trabalho final desenvolvido para a disciplina de Tópicos Avançados em Informática (TAI). Ele consiste em um sistema que gerencia uma revenda de hosts.
+This is the final work developed for the subject Advanced Topics in Computer Science (TAI). It consists of a system that manages a reseller of hosts.
 
 ___
-### Tecnologias utilizadas
+### Technologies used:
 
 - PHP
 - Laragon
@@ -13,7 +13,7 @@ ___
 - Heroku
 
 ___
-### Desenvolvido por:
+### Developed by:
 
 > Filipe Medeiros de Almeida ([@UmFilipe](https://github.com/UmFilipe "Github: Filipe Medeiros de Almeida"))
 >
