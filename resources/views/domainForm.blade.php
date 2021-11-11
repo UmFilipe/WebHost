@@ -8,6 +8,13 @@
     }
     @endphp
 
+    @section('script')
+    <script>
+        $(document).ready(function($){
+        $('#preco').mask("###0.00", {reverse: true})
+    }); 
+    </script>
+    @endsection
     @section('content')
 
     <div style="margin-top: 20px; margin-right: 100px; margin-left: 100px;">

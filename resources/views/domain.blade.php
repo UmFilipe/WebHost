@@ -24,7 +24,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-auto" style="margin-left: 20%">
+        <div class="col-auto" style="margin-left: 10%">
             <a href="{{ action('App\Http\Controllers\DomainController@create') }}" class="btn btn-success"><i
                     class="fas fa-plus"></i> Cadastrar</a>
         </div>
@@ -33,6 +33,9 @@
                 href="{{ action('App\Http\Controllers\DomainController@pdfDomain') }}"><i
                     class="fas fa-file-pdf"></i>
                 PDF</a>
+        </div>
+        <div class="col-auto">
+        <a href="{{url("/domain-email")}}" class="btn btn-warning"> <i class="fas fa-paper-plane"></i> Enviar Email</a>
         </div>
     </div>
     @if ($errors->any())
@@ -44,7 +47,7 @@
         </ul>
     </div>
 @endif
-
+<div class="col-auto">
 <table class="table table-hover" style="margin-top: 20px;">
     <thead>
         <tr>
@@ -67,5 +70,8 @@
         @endforeach
     </tbody>
 </table>
-
+<div class="d-flex justify-content-around">
+{{ $domains}}
+</div>
+</div>
 @endsection

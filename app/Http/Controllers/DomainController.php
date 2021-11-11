@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Mail\sendEmailDomain;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Models\domain;
 use App\Models\User;
@@ -12,8 +14,23 @@ class DomainController extends Controller
 {
     public function index()
     {
-        $domain = Domain::all();
+        $domain = Domain::paginate(10);
         return view('domain')->with(['domains'=> $domain]);
+    }
+    
+    public function sendEmails()
+    {
+        $Domain_ = [];
+        $Domain_['domains'] = Domain::paginate(50);
+
+        try {
+            Mail::to('webhost@gmail.com')
+                ->send(new sendEmailDomain($Domain_));
+
+            return \redirect()->action('App\Http\Controllers\DomainController@index')->with('success', 'Envio de email realizado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->with('error', $e->getMessage());
+        }
     }
 
     public function new(Request $request)
@@ -27,7 +44,7 @@ class DomainController extends Controller
 
         ]);
 
-        return redirect()->action('App\Http\Controllers\DomainController@index');
+        return redirect()->action('App\Http\Controllers\DomainController@index')->with('success', 'Registro cadastrado com sucesso!')->with('error', 'Ocorreu um erro ao cadastrar este registro');
     }
 
     public function create()
@@ -49,7 +66,7 @@ class DomainController extends Controller
         $domain = Domain::findOrFail($id);
         $domain->delete();
 
-        return redirect()->action('App\Http\Controllers\DomainController@index');
+        return redirect()->action('App\Http\Controllers\DomainController@index')->with('error', 'Registro deletado com sucesso!');
     }
 
     public function search(Request $request)
@@ -73,7 +90,7 @@ class DomainController extends Controller
             'ownerEmail' => $request->ownerEmail == 'null' ? null : $request->ownerEmail
         ]);
 
-        return redirect()->action('App\Http\Controllers\DomainController@index');
+        return redirect()->action('App\Http\Controllers\DomainController@index')->with('success', 'Registro atualizado com sucesso!');
     }
     public function pdfDomain()
     {

@@ -23,7 +23,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-auto" style="margin-left: 20%">
+        <div class="col-auto" style="margin-left: 10%">
             <a href="{{ action('App\Http\Controllers\HostController@create') }}" class="btn btn-success"><i
                     class="fas fa-plus"></i> Cadastrar</a>
         </div>
@@ -32,6 +32,10 @@
                 href="{{ action('App\Http\Controllers\HostController@pdfHosts') }}"><i
                     class="fas fa-file-pdf"></i>
                 PDF</a>
+        </div>
+        <div class="col-auto">
+        <a href="{{url("/hosts-email")}}" class="btn btn-warning"> <i class="fas fa-paper-plane"></i> Enviar
+                Email</a>
         </div>
     </div>
     <table class="table table-hover" style="margin-top: 20px;">
@@ -55,5 +59,8 @@
             @endforeach
         </tbody>
     </table>
+    <div class="d-flex justify-content-around">
+        {{ $hosts->links()}}
+    </div>
 
 @endsection

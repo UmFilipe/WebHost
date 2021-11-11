@@ -24,7 +24,7 @@
             </form>
         </div>
 
-        <div class="col-auto" style="margin-left: 20%">
+        <div class="col-auto" style="margin-left: 10%">
             <a href="{{ action('App\Http\Controllers\ServerController@create') }}" class="btn btn-success"><i
                     class="fas fa-plus"></i> Cadastrar</a>
         </div>
@@ -33,6 +33,10 @@
                 href="{{ action('App\Http\Controllers\ServerController@pdfServer') }}"><i
                     class="fas fa-file-pdf"></i>
                 PDF</a>
+        </div>
+        <div class="col-auto">
+        <a href="{{url("/servers-email")}}" class="btn btn-warning"> <i class="fas fa-paper-plane"></i> Enviar
+                Email</a>
         </div>
 
     </div>
@@ -57,5 +61,7 @@
             @endforeach
         </tbody>
     </table>
-
+    <div class="d-flex justify-content-around">
+        {{ $servers->links()}}
+    </div>
 @endsection

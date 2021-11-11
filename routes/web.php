@@ -49,6 +49,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/hosts/remove/{id}', 'App\Http\Controllers\HostController@remove');
     Route::post('/hosts/new', 'App\Http\Controllers\HostController@new');
 
+
+    Route::get('/domain-email', "App\Http\Controllers\DomainController@sendEmails");
+    Route::get('/servers-email', "App\Http\Controllers\ServerController@sendEmails");
+    Route::get('/hosts-email', "App\Http\Controllers\HostController@sendEmails");
 });
 
 Auth::routes();
