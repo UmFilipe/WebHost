@@ -6,6 +6,7 @@ ___
 ### Technologies used:
 
 - PHP
+- Composer
 - Laragon
 - Heidi SQL
 - Laravel
