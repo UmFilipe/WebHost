@@ -18,7 +18,7 @@
 
     <div style="margin-top: 20px; margin-right: 100px; margin-left: 100px;">
 
-        <form action="{{ $action }}" method="POST" class="col">
+        <form action="{{ $action }}" method="POST" class="col" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-12">
@@ -41,6 +41,17 @@
                         placeholder="Insira uma descrição para o servidor"
                         class="form-control">@if (!empty(old('descricao'))) {{ old('descricao') }} @elseif(!empty($servers->descricao)){{ $servers->descricao }} @endif</textarea>
                 </div>
+            </div>
+            <div class="row">
+                @php
+                    !empty($servers->nome_arquivo) ? $nome_arquivo = $servers->nome_arquivo : $nome_arquivo = "sem_imagem.png";
+                @endphp
+                <div class="form-group col-md-3">
+                <label for="nome_arquivo">Imagem ou logo do servidor</label>
+                <img src="/storage/imagem/{{$nome_arquivo}}" width="300px" />
+                <input type="file" name="nome_arquivo" id="nome_arquivo" class="form-control">
+                <br>
+            </div>
             </div>
             <div class="row">
                 <div class="col-md-12" style="margin-top: 10px;">

@@ -44,6 +44,7 @@
         <thead>
             <tr>
                 <th scope="col">id</th>
+                <th scope="col">Imagem</th>
                 <th scope="col">Tipo de Servidor</th>
                 <th scope="col">Preço</th>
                 <th scope="col">Descrição</th>
@@ -51,8 +52,12 @@
         </thead>
         <tbody>
             @foreach ($servers as $item)
+                @php
+                    !empty($item->nome_arquivo) ? $nome_arquivo = $item->nome_arquivo : $nome_arquivo = "sem_imagem.png";
+                @endphp
                 <tr>
                     <th scope="row">{{ $item->id }}</th>
+                    <td><img src="/storage/imagem/{{$nome_arquivo}}" width="150px"/></td>
                     <td>{{ $item->tipo }}</td>
                     <td>R${{ $item->preco }}</td>
                     <td>{{ $item->descricao }}</td>

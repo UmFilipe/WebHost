@@ -15,14 +15,16 @@ class Servers extends Model
         'tipo',
         'preco',
         'descricao',
-        'ownerEmail'
+        'ownerEmail',
+        'nome_arquivo'
     ];
     public static function rulesForServers()
     {
         return [
             'tipo' => 'required|max:30',
             'preco' => 'required|max:50',
-            'descricao' => 'required|max:100'
+            'descricao' => 'required|max:100',
+            'nome_arquivo' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ];
     }
 
