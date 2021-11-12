@@ -6,8 +6,9 @@ ___
 ### Technologies used:
 
 - PHP
+- Composer
 - Laragon
-- Heidi SQL
+- MySQL
 - Laravel
 - Bootstrap
 - Heroku
