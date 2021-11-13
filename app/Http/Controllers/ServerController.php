@@ -18,7 +18,7 @@ class ServerController extends Controller
     public function index()
     {
         $server = Servers::paginate(10);
-        return view('servers')->with(['servers'=> $server]);
+        return view('servers.servers')->with(['servers'=> $server]);
     }
 
     public function sendEmails()
@@ -38,8 +38,8 @@ class ServerController extends Controller
 
     public function search(Request $request)
         {
-            $result = Servers::where($request->type, 'like', '%' . $request->pesquisar . '%')->get();
-            return view('servers')->with(['servers' => $result]);
+            $result = Servers::where($request->type, 'like', '%' . $request->pesquisar . '%')->paginate(10);
+            return view('servers.servers')->with(['servers' => $result]);
         }
         /* public function search(Request $request)
     {
@@ -80,13 +80,13 @@ class ServerController extends Controller
     public function create()
     {
         $server = Servers::all();
-        return view('serversForm')->with(['servers' => $server]);
+        return view('servers.serversForm')->with(['servers' => $server]);
     }
 
     public function edit($id)
     {
         $server = Servers::find($id);
-        return view('serversForm')->with(['servers' => $server]);
+        return view('servers.serversForm')->with(['servers' => $server]);
     }
 
     public function update(Request $request, $id)
@@ -127,6 +127,6 @@ class ServerController extends Controller
     public function pdfServer()
     {
         $server = Servers::all();
-        return PDF::loadView('serverPdf', compact('server'))->download('server.pdf');
+        return PDF::loadView('servers.serverPdf', compact('server'))->download('server.pdf');
     }
 }

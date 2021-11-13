@@ -60,7 +60,7 @@
         </tbody>
     </table>
     <div class="d-flex justify-content-around">
-        {{ $hosts->links()}}
+        {{$hosts->links()}}
     </div>
 
 @endsection

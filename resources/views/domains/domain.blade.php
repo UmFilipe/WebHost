@@ -16,6 +16,7 @@
                         <option value="dominio" @if (!empty(old('tipo')) && old('tipo') == 'dominio') selected @endif>Nome do domínio</option>
                         <option value="preco" @if (!empty(old('tipo')) && old('tipo') == 'preco') selected @endif>Preço</option>
                         <option value="descricao" @if (!empty(old('tipo')) && old('tipo') == 'descricao') selected @endif>Descrição</option>
+                        <option value="localidade" @if (!empty(old('tipo')) && old('tipo') == 'descricao') selected @endif>Localidade</option>
                     </select>
                 </div>
                 <div class="col-auto">
@@ -53,9 +54,9 @@
         <tr>
             <th scope="col">id</th>
             <th scope="col">Nome do Domínio</th>
-            <th scope="col">Email do Dono</th>
             <th scope="col">Preço</th>
-            <th scope="col">Descrição</th>
+            <th scope="col">Descricao</th>
+            <th scope="col">Localidade</th>
         </tr>
     </thead>
     <tbody>
@@ -65,13 +66,14 @@
                 <td>{{ $item->dominio }}</td>
                 <td>R${{ $item->preco }}</td>
                 <td>{{ $item->descricao }}</td>
+                <td>{{ $item->localidades->nome ?? "-" }}</td>
                 <td><a href="{{ action('App\Http\Controllers\DomainController@edit', $item->id) }}"><i class="fa fa-edit"></i></a></td>
             </tr>
         @endforeach
     </tbody>
 </table>
 <div class="d-flex justify-content-around">
-{{ $domains}}
+{{$domains->links()}}
 </div>
 </div>
 @endsection

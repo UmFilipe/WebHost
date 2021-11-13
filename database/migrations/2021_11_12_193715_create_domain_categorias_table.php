@@ -15,6 +15,8 @@ class CreateDomainCategoriasTable extends Migration
     {
         Schema::create('domain_categorias', function (Blueprint $table) {
             $table->id();
+            $table->string("nome", 80);
+            $table->string("sigla", 20);
             $table->timestamps();
         });
     }

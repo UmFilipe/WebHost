@@ -31,7 +31,7 @@
                 <div class="col-md-12">
                     <label for="preco" class="form-label">Preço</label>
                     <input name="preco" id="preco" type="text" class="form-control"
-                        placeholder="R$ 15" required value="@if (!empty(old('preco'))) {{ old('preco') }} @elseif(!empty($servers->preco)){{ $servers->preco }} @endif">
+                        placeholder="15.00" required value="@if (!empty(old('preco'))) {{ old('preco') }} @elseif(!empty($servers->preco)){{ $servers->preco }} @endif">
                 </div>
             </div>
             <div class="row">
@@ -54,13 +54,12 @@
             </div>
             </div>
             <div class="row">
-                <div class="col-md-12" style="margin-top: 10px;">
+                <div class="col-sm-3" style="margin-top: 10px;">
                     <button type="submit" class="btn btn-success"><i class="@if (!empty($servers->id)) fas fa-save
                         @else
                             fas fa-plus @endif"></i>
                         {{ empty($servers->id) ? 'Cadastrar' : 'Editar' }}</button>
-                </div>
-                <div class="col-md-12" style="margin-top: 10px;">
+
                     @if (!empty($servers->id))
                         <a class="btn btn-danger" href="{{ action('App\Http\Controllers\ServerController@remove', $servers->id) }}"
                         >

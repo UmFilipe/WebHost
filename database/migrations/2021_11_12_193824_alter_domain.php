@@ -14,7 +14,8 @@ class AlterDomain extends Migration
     public function up()
     {
         Schema::table('domains', function (Blueprint $table) {
-            //
+            $table->bigInteger("domain_categoria_id")->unsigned()->nullable();
+            $table->foreign("domain_categoria_id")->references("id")->on("domain_categorias");
         });
     }
 

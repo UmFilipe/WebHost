@@ -19,8 +19,6 @@ class domain extends Migration
             $table->string('dominio', 30);
             $table->float('preco', 50);
             $table->string('descricao', 100);
-            $table->bigInteger('ownerEmail')->unsigned()->nullable();
-            $table->foreign('ownerEmail')->references('id')->on('users');
         });
     }
 

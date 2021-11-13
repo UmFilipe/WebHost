@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/domain/update/{id}', 'App\Http\Controllers\DomainController@update');
     Route::get('/domain/remove/{id}', 'App\Http\Controllers\DomainController@remove');
     Route::post('/domain/new', 'App\Http\Controllers\DomainController@new');
+    Route::get('/domain-email', "App\Http\Controllers\DomainController@sendEmails");
 
     Route::get('/servers', [App\Http\Controllers\ServerController::class, 'index'])->name('servers');
     Route::post('/servers/search', 'App\Http\Controllers\ServerController@search');
@@ -39,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/servers/edit/{id}', 'App\Http\Controllers\ServerController@edit');
     Route::get('/servers/remove/{id}', 'App\Http\Controllers\ServerController@remove');
     Route::post('/servers/new', 'App\Http\Controllers\ServerController@new');
+    Route::get('/servers-email', "App\Http\Controllers\ServerController@sendEmails");
 
     Route::get('/hosts', [App\Http\Controllers\HostController::class, 'index'])->name('hosts');
     Route::post('/hosts/search', 'App\Http\Controllers\HostController@search');
@@ -48,11 +50,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/hosts/edit/{id}', 'App\Http\Controllers\HostController@edit');
     Route::get('/hosts/remove/{id}', 'App\Http\Controllers\HostController@remove');
     Route::post('/hosts/new', 'App\Http\Controllers\HostController@new');
-
-
-    Route::get('/domain-email', "App\Http\Controllers\DomainController@sendEmails");
-    Route::get('/servers-email', "App\Http\Controllers\ServerController@sendEmails");
     Route::get('/hosts-email', "App\Http\Controllers\HostController@sendEmails");
+
 });
 
 Auth::routes();

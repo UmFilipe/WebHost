@@ -15,7 +15,7 @@ class HostController extends Controller
     public function index()
     {
         $host = Hosts::paginate(10);
-        return view('hosts')->with(['hosts'=> $host]);
+        return view('hosts.hosts')->with(['hosts'=> $host]);
     }
 
     public function sendEmails()
@@ -35,14 +35,9 @@ class HostController extends Controller
 
     public function search(Request $request)
     {
-        if ($request->tipo == 'email') {
-            $result = Hosts::whereHas('users', function (Builder $query) use (&$request) {
-                $query->where('email', 'like', "%" . $request->pesquisar . "%");
-            })->get();
-        } else {
-            $result = Hosts::where($request->tipo, 'like', '%' . $request->pesquisar . '%')->get();
-        }
-        return view('hosts')->with(['hosts' => $result]);
+       
+        $result = Hosts::where($request->tipo, 'like', '%' . $request->pesquisar . '%')->paginate(10);
+        return view('hosts.hosts')->with(['hosts' => $result]);
     }
 
     public function new(Request $request)
@@ -60,13 +55,13 @@ class HostController extends Controller
     public function create()
     {
         $hosts = Hosts::all();
-        return view('hostsForm')->with(['hosts' => $hosts]);
+        return view('hosts.hostsForm')->with(['hosts' => $hosts]);
     }
 
     public function edit($id)
     {
         $hosts = Hosts::find($id);
-        return view('hostsForm')->with(['hosts' => $hosts]);
+        return view('hosts.hostsForm')->with(['hosts' => $hosts]);
     }
 
     public function update(Request $request, $id)
@@ -91,7 +86,7 @@ class HostController extends Controller
     public function pdfHosts()
     {
         $hosts = Hosts::all();
-        return PDF::loadView('hostsPdf', compact('hosts'))->download('hosts.pdf');
+        return PDF::loadView('hosts.hostsPdf', compact('hosts'))->download('hosts.pdf');
     }
 }
 

@@ -67,6 +67,6 @@
         </tbody>
     </table>
     <div class="d-flex justify-content-around">
-        {{ $servers->links()}}
+        {{$servers->links()}}
     </div>
 @endsection

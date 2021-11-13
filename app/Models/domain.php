@@ -15,7 +15,7 @@ class Domain extends Model
         'dominio',
         'preco',
         'descricao',
-        'ownerEmail'
+        'domain_categoria_id'
     ];
 
     public static function rulesForDomain()
@@ -23,6 +23,7 @@ class Domain extends Model
         return [
             'dominio' => 'required|max:30',
             'preco' => 'required|max:50',
+            'domain_categoria_id' => 'required', 
             'descricao' => 'required|max:100'
         ];
     }
@@ -35,7 +36,13 @@ class Domain extends Model
             'preco.required' => 'O preço é um campo obrigatório',
             'descricao.max' => 'O preço máximo é de 100 caracteres!',
             'descricao.required' => 'A descrição é um campo obrigatório',
-            'descricao.max' => 'A descrição máxima é de 100 caracteres!'
+            'descricao.max' => 'A descrição máxima é de 100 caracteres!',
+            'domain_categoria_id.required' => 'A localidade é um campo obrigatório'
         ];
+    }
+
+    public function localidades()
+    {
+        return $this->belongsTo(DomainCategoria::class, 'domain_categoria_id', 'id');
     }
 }
