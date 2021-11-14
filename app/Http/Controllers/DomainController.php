@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Charts\DomainChart;
 use App\Mail\sendEmailDomain;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
@@ -10,24 +9,18 @@ use App\Models\DomainCategoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\domain;
+use App\Models\Hosts;
 use App\Models\Empresa;
 use App\Models\User;
+
 use PDF;
 
 class DomainController extends Controller
 {
     public function index()
     {
-
         $domain = Domain::paginate(10);
-        // foreach($domain as $item)
-        // {
-        //     dd($item->hosts);
-        // }
-        
-        $chart = new DomainChart();
-        
-        return view('domains.domain')->with(['domains' => $domain, 'chartDomain'=> $chart->build()]);
+        return view('domains.domain')->with(['domains' => $domain]);
         
     }
     
@@ -60,8 +53,8 @@ class DomainController extends Controller
     {
         $domain_categoria = DomainCategoria::all();
         $empresas = Empresa::all();
-        // $host = Domain::all(); 
-        return view("domains.domainForm")->with(['domain_categorias' => $domain_categoria, 'empresas' => $empresas]);
+        $host = Domain::with('hosts'); 
+        return view("domains.domainForm")->with(['domain_categorias' => $domain_categoria, 'empresas' => $empresas, 'hosts' => $host]);
     }
 
     public function edit($id)
@@ -69,9 +62,9 @@ class DomainController extends Controller
         $domains = Domain::find($id); 
         $domain_categoria = DomainCategoria::all(); 
         $empresas = Empresa::all(); 
-        // $host = Domain::all(); 
+        $host = Domain::with('hosts')->get(); 
 
-        return view("domains.domainForm")->with(['domain' => $domains, 'domain_categorias' => $domain_categoria, 'empresas' => $empresas,]);
+        return view("domains.domainForm")->with(['domain' => $domains, 'domain_categorias' => $domain_categoria, 'empresas' => $empresas, 'hosts' => $host]);
 
     }
 
@@ -85,7 +78,6 @@ class DomainController extends Controller
 
     public function search(Request $request)
     {
-        $chart = new DomainChart();
 
         if ($request->tipo == "dominio") {
             $objResult = Domain::where('dominio', 'like', "%" . $request->pesquisar . "%")->paginate(10);
@@ -102,7 +94,7 @@ class DomainController extends Controller
                 $query->where('nome', 'like', "%" . $request->pesquisar . "%");
             })->paginate(10);
         }
-        return view('domains.domain')->with(['domains' => $objResult, 'chartDomain'=> $chart->build()]);
+        return view('domains.domain')->with(['domains' => $objResult, ]);
     }
 
     // public function search(Request $request)

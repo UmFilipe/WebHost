@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Charts\DomainChart;
+use App\Models\domain;
+use App\Models\servers;
+use App\Models\hosts;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $domain = Domain::all();
+        $hosts = Hosts::all();
+        $servers = Servers::all();
+
+        $chart = new DomainChart();
+        return view('home')->with(['chartDomain'=> $chart->build([$domain->count(), $hosts->count(), $servers->count()])]);
     }
 }

@@ -13,11 +13,14 @@ class DomainChart
         $this->chart = new LarapexChart;
     }
 
-    public function build(): \ArielMejiaDev\LarapexCharts\PieChart
+    public function build($valores): \ArielMejiaDev\LarapexCharts\PieChart
     {
         return $this->chart->pieChart()
-            ->setTitle('Localidades:')
-            ->addData([4, 9, 10, 3, 1, 2 ])
-            ->setLabels(['Sul Americano', 'Americano', 'Brasileiro', 'Europeu', 'Asiatico', "Oceiania"]);
+            ->setTitle('Serviços Utilizados:')
+            ->addData($valores)
+            ->setColors(['#E3342F', '#FFED4A', '#38C172'])
+            ->setLabels(['Dominios', 'Hospedagens', 'Servidores'])
+            ->setFontFamily('sans-serif')
+            ->setFontColor('#000');
     }
 }

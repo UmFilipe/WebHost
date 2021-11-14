@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Hosts extends Model
 {
@@ -36,5 +37,9 @@ class Hosts extends Model
             'preco.required' => 'O preço é um campo obrigatório.',
             'preco.max' => 'O tamanho máximo para este campo é de 50 caracteres',
         ];
+    }
+    public function domains()
+    {
+        return $this->belongsToMany(Domain::class, 'domain_host', 'host_id', 'domain_id');
     }
 }

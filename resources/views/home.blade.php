@@ -1,4 +1,14 @@
 @extends('layouts.app')
+@section('grafico')
+
+<div class="row">
+
+<div class="col-12">
+{{ $chartDomain->container() }}
+        {{ $chartDomain->script() }}
+        </div>
+</div>
+@endsection
 @section('content')
 
 <div class="index">

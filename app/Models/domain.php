@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Domain extends Model
 {
@@ -56,4 +57,5 @@ class Domain extends Model
     {
         return $this->belongsToMany(Hosts::class, 'domain_host', 'domain_id', 'host_id');
     }
+    
 }

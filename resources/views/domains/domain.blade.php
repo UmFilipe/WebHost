@@ -1,16 +1,5 @@
 @extends('layouts.app')
 
-@section('grafico')
-
-<div class="row">
-    <div class="col-6">
-        {{ $chartDomain->container() }}
-        {{ $chartDomain->script() }}
-    </div>
-</div>
-@endsection
-
-
 @section('content')
 
 <div style="margin-top: 20px; margin-right: 100px; margin-left: 100px;">
