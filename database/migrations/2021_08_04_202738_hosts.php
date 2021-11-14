@@ -20,7 +20,6 @@ class Hosts extends Migration
             $table->string('localizacao', 30);
             $table->float('preco', 50);
             $table->bigInteger('ownerEmail')->unsigned()->nullable();
-            $table->foreign('ownerEmail')->references('id')->on('users');
         });
     }
 

@@ -15,7 +15,8 @@ class Domain extends Model
         'dominio',
         'preco',
         'descricao',
-        'domain_categoria_id'
+        'domain_categoria_id',
+        'empresa_id'
     ];
 
     public static function rulesForDomain()
@@ -44,5 +45,15 @@ class Domain extends Model
     public function localidades()
     {
         return $this->belongsTo(DomainCategoria::class, 'domain_categoria_id', 'id');
+    }
+
+    public function empresas()
+    {
+        return $this->belongsTo(Empresa::class, 'empresa_id', 'id');
+    }
+
+    public function hosts()
+    {
+        return $this->belongsToMany(Hosts::class, 'domain_host', 'domain_id', 'host_id');
     }
 }

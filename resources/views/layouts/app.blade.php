@@ -6,7 +6,7 @@
     <link href="{{ asset('/css/css.css') }}" rel="stylesheet">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
+    <script src="{{@asset('vendor/larapex-charts/apexcharts.js')}}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>WebHost</title>
@@ -92,6 +92,17 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <div class="container"> 
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            @yield('grafico')
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <footer id="footer">
         <div class="container">

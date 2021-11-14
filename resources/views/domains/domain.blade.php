@@ -1,4 +1,16 @@
 @extends('layouts.app')
+
+@section('grafico')
+
+<div class="row">
+    <div class="col-6">
+        {{ $chartDomain->container() }}
+        {{ $chartDomain->script() }}
+    </div>
+</div>
+@endsection
+
+
 @section('content')
 
 <div style="margin-top: 20px; margin-right: 100px; margin-left: 100px;">
@@ -56,6 +68,7 @@
             <th scope="col">Nome do Domínio</th>
             <th scope="col">Preço</th>
             <th scope="col">Descricao</th>
+            <th scope="col">Empresa</th>
             <th scope="col">Localidade</th>
         </tr>
     </thead>
@@ -66,6 +79,7 @@
                 <td>{{ $item->dominio }}</td>
                 <td>R${{ $item->preco }}</td>
                 <td>{{ $item->descricao }}</td>
+                <td>{{ $item->empresas->nome ?? "-" }}</td>
                 <td>{{ $item->localidades->nome ?? "-" }}</td>
                 <td><a href="{{ action('App\Http\Controllers\DomainController@edit', $item->id) }}"><i class="fa fa-edit"></i></a></td>
             </tr>

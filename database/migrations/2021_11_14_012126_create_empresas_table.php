@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Servers extends Migration
+class CreateEmpresasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class Servers extends Migration
      */
     public function up()
     {
-        Schema::create('servers', function (Blueprint $table) {
+        Schema::create('empresas', function (Blueprint $table) {
             $table->id();
+            $table->string('nome', 80);
+            $table->string('cnpj', 25);
             $table->timestamps();
-            $table->string('tipo', 30);
-            $table->float('preco', 50);
-            $table->string('descricao', 100);
-            $table->bigInteger('ownerEmail')->unsigned()->nullable();
         });
     }
 
@@ -30,6 +28,6 @@ class Servers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('servers');
+        Schema::dropIfExists('empresas');
     }
 }

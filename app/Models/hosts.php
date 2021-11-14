@@ -14,8 +14,7 @@ class Hosts extends Model
     protected $fillable = [
         'tamanho',
         'localizacao',
-        'preco',
-        'ownerEmail'
+        'preco'
     ];
 
     public static function ruleForHost()
@@ -38,5 +37,4 @@ class Hosts extends Model
             'preco.max' => 'O tamanho máximo para este campo é de 50 caracteres',
         ];
     }
-
 }

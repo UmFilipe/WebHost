@@ -15,7 +15,6 @@ class Servers extends Model
         'tipo',
         'preco',
         'descricao',
-        'ownerEmail',
         'nome_arquivo'
     ];
     public static function rulesForServers()

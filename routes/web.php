@@ -52,6 +52,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/hosts/new', 'App\Http\Controllers\HostController@new');
     Route::get('/hosts-email', "App\Http\Controllers\HostController@sendEmails");
 
+    Route::resource('/companies', "App\Http\Controllers\EmpresaController");
+    Route::resource('/domain-host', "App\Http\Controllers\DomainHostController");
+
 });
 
 Auth::routes();

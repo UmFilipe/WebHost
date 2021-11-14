@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Charts\DomainChart;
 use App\Mail\sendEmailDomain;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
@@ -9,6 +10,7 @@ use App\Models\DomainCategoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\domain;
+use App\Models\Empresa;
 use App\Models\User;
 use PDF;
 
@@ -16,9 +18,17 @@ class DomainController extends Controller
 {
     public function index()
     {
-        $objDomain = Domain::all();
+
         $domain = Domain::paginate(10);
-        return view('domains.domain')->with(['domains' => $domain]);
+        // foreach($domain as $item)
+        // {
+        //     dd($item->hosts);
+        // }
+        
+        $chart = new DomainChart();
+        
+        return view('domains.domain')->with(['domains' => $domain, 'chartDomain'=> $chart->build()]);
+        
     }
     
     public function sendEmails()
@@ -38,32 +48,30 @@ class DomainController extends Controller
 
     public function new(Request $request)
     {
-        $domain_categorias = DomainCategoria::all();
-        return view("domains.domainForm")->with(['domain_categorias' => $domain_categorias]);
-        
-        /*$request->validate(Domain::rulesForDomain(), Domain::mensageRulesforDomains());
-        Domain::create([
-            'dominio' => $request->dominio,
-            'preco' => $request->preco,
-            'domain_categoria_id' => $request->domain_categoria_id,
-            'descricao' => $request->descricao,
-        ]);*/
+        Validator::make($request->all(), Domain::rulesForDomain(), Domain::mensageRulesforDomains())->validate();
+        $input = $request->all();
+
+        Domain::create($input);
 
         return redirect()->action('App\Http\Controllers\DomainController@index')->with('success', 'Registro cadastrado com sucesso!');
     }
 
     public function create()
     {
-        $domain_categorias = DomainCategoria::all();
-        return view('domains.domainForm')->with(['domain_categorias' => $domain_categorias]);
+        $domain_categoria = DomainCategoria::all();
+        $empresas = Empresa::all();
+        // $host = Domain::all(); 
+        return view("domains.domainForm")->with(['domain_categorias' => $domain_categoria, 'empresas' => $empresas]);
     }
 
     public function edit($id)
     {
         $domains = Domain::find($id); 
         $domain_categoria = DomainCategoria::all(); 
+        $empresas = Empresa::all(); 
+        // $host = Domain::all(); 
 
-        return view("domains.domainForm")->with(['domain' => $domains, 'domain_categorias' => $domain_categoria]);
+        return view("domains.domainForm")->with(['domain' => $domains, 'domain_categorias' => $domain_categoria, 'empresas' => $empresas,]);
 
     }
 

@@ -37,8 +37,16 @@
             <label for="domain_categoria_id">Localidade</label>
             <select name="domain_categoria_id" class="form-control">
                 @foreach ($domain_categorias as $item)
-                <option value="{{$item->id}}" @if($item->id == old('domain_categoria_id', ($domain->domain_categoria_id))) selected="selected" @endif >{{$item->nome}} -
+                <option value="{{$item->id}}" @if($item->id == old('domain_categoria_id', !empty($domain->domain_categoria_id))) selected="selected" @endif >{{$item->nome}} -
                     {{$item->sigla}}</option>
+                @endforeach
+            </select>
+            </div>
+            <div class="form-group col-md-3">
+            <label for="domain_categoria_id">Empresa</label>
+            <select name="empresa_id" class="form-control">
+                @foreach ($empresas as $item)
+                <option value="{{$item->id}}" @if($item->id == old('empresa_id', !empty($domain->empresa_id))) selected="selected" @endif >{{$item->nome}}</option>
                 @endforeach
             </select>
             </div>
