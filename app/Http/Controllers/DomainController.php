@@ -85,6 +85,8 @@ class DomainController extends Controller
 
     public function search(Request $request)
     {
+        $chart = new DomainChart();
+
         if ($request->tipo == "dominio") {
             $objResult = Domain::where('dominio', 'like', "%" . $request->pesquisar . "%")->paginate(10);
         } else if ($request->tipo == "preco") {
@@ -95,8 +97,12 @@ class DomainController extends Controller
             $objResult = Domain::whereHas('localidades', function (Builder $query) use (&$request) {
                 $query->where('nome', 'like', "%" . $request->pesquisar . "%");
             })->paginate(10);
+        } else if ($request->tipo == "empresa") {
+            $objResult = Domain::whereHas('empresas', function (Builder $query) use (&$request) {
+                $query->where('nome', 'like', "%" . $request->pesquisar . "%");
+            })->paginate(10);
         }
-        return view('domains.domain')->with(['domains' => $objResult]);
+        return view('domains.domain')->with(['domains' => $objResult, 'chartDomain'=> $chart->build()]);
     }
 
     // public function search(Request $request)

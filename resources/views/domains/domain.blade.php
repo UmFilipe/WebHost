@@ -28,7 +28,8 @@
                         <option value="dominio" @if (!empty(old('tipo')) && old('tipo') == 'dominio') selected @endif>Nome do domínio</option>
                         <option value="preco" @if (!empty(old('tipo')) && old('tipo') == 'preco') selected @endif>Preço</option>
                         <option value="descricao" @if (!empty(old('tipo')) && old('tipo') == 'descricao') selected @endif>Descrição</option>
-                        <option value="localidade" @if (!empty(old('tipo')) && old('tipo') == 'descricao') selected @endif>Localidade</option>
+                        <option value="localidade" @if (!empty(old('tipo')) && old('tipo') == 'localidade') selected @endif>Localidade</option>
+                        <option value="empresa" @if (!empty(old('tipo')) && old('tipo') == 'empresa') selected @endif>Empresa</option>
                     </select>
                 </div>
                 <div class="col-auto">
