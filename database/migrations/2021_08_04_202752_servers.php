@@ -19,7 +19,6 @@ class Servers extends Migration
             $table->string('tipo', 30);
             $table->float('preco', 50);
             $table->string('descricao', 100);
-            $table->bigInteger('ownerEmail')->unsigned()->nullable();
         });
     }
 
