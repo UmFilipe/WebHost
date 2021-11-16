@@ -18,9 +18,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('./css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body id="body">
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
@@ -104,24 +104,6 @@
             </div>
         </div>
     </div>
-    <footer id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-9">
-                    &copy; 2021 WebHost. Criado por <a target="_blank" href="https://github.com/oduardu" title="Eduardo Pazzini Zancanaro">Eduardo</a> & <a target="_blank" href="https://github.com/umfilipe" title="Filipe Medeiros de Almeida">Filipe</a>
-                </div>
-                <div class="col-lg-3">
-                    <ul class="social-icons" >
-                        <li><a href="https://facebook.com"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="https://twitter.com"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="https://linkedin.com"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="https://youtube.com"><i class="fa fa-youtube"></i></a></li>
-                        <li><a href="https://github.com"><i class="fa fa-github"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
     <script src="https://kit.fontawesome.com/78376bc006.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" ></script>
