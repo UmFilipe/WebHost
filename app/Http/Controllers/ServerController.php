@@ -41,22 +41,6 @@ class ServerController extends Controller
             $result = Servers::where($request->type, 'like', '%' . $request->pesquisar . '%')->paginate(10);
             return view('servers.servers')->with(['servers' => $result]);
         }
-        /* public function search(Request $request)
-    {
-
-        if ($request->tipo == "nome") {
-            $objResult = Turma::where('nome', 'like', "%" . $request->valor . "%")->get();
-        } else if ($request->tipo == "codigo") {
-            $objResult =  Turma::where('codigo', 'like', "%" . $request->valor . "%")->get();
-        } else if ($request->tipo == "categoria") {
-            $objResult = Turma::whereHas('categorias', function (Builder $query) use (&$request) {
-                $query->where('nome', 'like', "%" . $request->valor . "%");
-            })->get();
-        }
-        // dd($objResult);
-        return view("turma.list")->with(['turmas' => $objResult]);
-    } 
-    */
 
     public function new(Request $request)
     {
@@ -126,7 +110,7 @@ class ServerController extends Controller
 
     public function pdfServer()
     {
-        $server = Servers::all();
-        return PDF::loadView('servers.serverPdf', compact('server'))->download('server.pdf');
+        $servers = Servers::all();
+        return PDF::loadView('servers.serverPdf', compact('servers'))->download('server.pdf');
     }
 }

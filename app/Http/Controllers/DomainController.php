@@ -97,18 +97,6 @@ class DomainController extends Controller
         return view('domains.domain')->with(['domains' => $objResult, ]);
     }
 
-    // public function search(Request $request)
-    // {
-    //     if ($request->tipo == 'email') {
-    //         $result = Domain::whereHas('users', function (Builder $query) use (&$request) {
-    //             $query->where('email', 'like', "%" . $request->pesquisar . "%");
-    //         })->get();
-    //     } else {
-    //         $result = Domain::where($request->tipo, 'like', '%' . $request->pesquisar . '%')->get();
-    //     }
-    //     return view('domain')->with(['domains' => $result]);
-    // }
-
     public function update(Request $request, $id)
     {
         Validator::make($request->all(), Domain::rulesForDomain(), Domain::mensageRulesforDomains())->validate();
@@ -124,7 +112,7 @@ class DomainController extends Controller
     }
     public function pdfDomain()
     {
-        $domain = Domain::all();
-        return PDF::loadView('domains.domainPdf', compact('domain'))->download('domain.pdf');
+        $domains = Domain::all();
+        return PDF::loadView('domains.domainPdf', compact('domains'))->download('domain.pdf');
     }
 }

@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <p>Lista de Domanios</p>
+    <p>Lista de Hosts</p>
     <div class="col-auto">
     <table class="table table-hover" style="margin-top: 20px;">
         <thead>

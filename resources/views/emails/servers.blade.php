@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <p>Lista de Domanios</p>
+    <p>Lista de Servidores</p>
     <div class="col-auto">
     <table class="table table-hover" style="margin-top: 20px;">
         <thead>
@@ -30,7 +30,6 @@
                     <td>{{ $item->tipo }}</td>
                     <td>R${{ $item->preco }}</td>
                     <td>{{ $item->descricao }}</td>
-                    <td><a href="{{ action('App\Http\Controllers\ServerController@edit', $item->id) }}"><i class="fa fa-edit"></i></a></td>
                 </tr>
             @endforeach
         </tbody>

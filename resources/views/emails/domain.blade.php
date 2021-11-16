@@ -12,16 +12,17 @@
 </head>
 
 <body>
-    <p>Lista de Domanios</p>
+    <p>Lista de Domínios</p>
     <div class="col-auto">
     <table class="table table-hover" style="margin-top: 20px;">
     <thead>
         <tr>
-            <th scope="col">Id</th>
+            <th scope="col">id</th>
             <th scope="col">Nome do Domínio</th>
-            <th scope="col">Email do Dono</th>
             <th scope="col">Preço</th>
-            <th scope="col">Descrição</th>
+            <th scope="col">Descricao</th>
+            <th scope="col">Empresa</th>
+            <th scope="col">Localidade</th>
         </tr>
     </thead>
     <tbody>
@@ -31,6 +32,8 @@
                 <td>{{ $item->dominio }}</td>
                 <td>R${{ $item->preco }}</td>
                 <td>{{ $item->descricao }}</td>
+                <td>{{ $item->empresas->nome ?? "-" }}</td>
+                <td>{{ $item->localidades->nome ?? "-" }}</td>
             </tr>
         @endforeach
     </tbody>

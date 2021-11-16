@@ -12,26 +12,29 @@
 <body
     style="margin-top: 50px; margin-bottom: 50px; margin-right: 30px; margin-left: 30px; width: 100%; height: 100vh; justify-content: center;">
     @if (!empty($hosts))
-        <table class="table table-hover" style="margin-top: 20px;">
-            <thead>
+    <p>Lista de Hosts</p>
+    <div class="col-auto">
+    <table class="table table-hover" style="margin-top: 20px;">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Tamanho do Host</th>
+                <th scope="col">Localização</th>
+                <th scope="col">Preço</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($hosts as $item)
                 <tr>
-                    <th class="col-md-2">ID: </th>
-                    <th class="col-md-4">Tamanho: </th>
-                    <th class="col-md-3">Localização: </th>
-                    <th class="col-md-3">Preço: </th>
+                    <th scope="row">{{ $item->id }}</th>
+                    <td>{{ $item->tamanho }} GB</td>
+                    <td>{{ $item->localizacao }}</td>
+                    <td>R$ {{ $item->preco }}</td>
+                    <td><a href="{{ action('App\Http\Controllers\HostController@edit', $item->id) }}"><i class="fa fa-edit"></i></a></td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($hosts as $item)
-                    <tr>
-                        <td class="col-md-2"> {{ $item->id }} </td>
-                        <td class="col-md-4"> {{ $item->tamanho }} GBs </td>
-                        <td class="col-md-3"> {{ $item->localizacao }} </td>
-                        <td class="col-md-3"> R$ {{ $item->preco }} </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+            @endforeach
+        </tbody>
+    </table>
     @else
         <h3>Não há nenhum item para ser exibido.</h3>
     @endif
